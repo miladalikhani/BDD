@@ -19,7 +19,7 @@ public class MyStepdefs {
         calculator = new Calculator();
     }
 
-    @Given("^Two input values, (\\d+) and (\\d+)$")
+    @Given("^Two input values, (-?\\d+) and (-?\\d+)$")
     public void twoInputValuesAnd(int arg0, int arg1) {
         val1 = arg0;
         val2 = arg1;
@@ -31,8 +31,20 @@ public class MyStepdefs {
         System.out.println(result);
     }
 
-    @Then("^I expect the result (\\d+)$")
+    @Then("^I expect the result (-?\\d+)$")
     public void iExpectTheResult(int arg0) {
         Assert.assertEquals(arg0, result);
+    }
+
+    @When("I ^ two values")
+    public void iPowTwoValues() {
+        result = this.calculator.pow(val1, val2);
+        System.out.println(result);
+    }
+
+    @When("I / two values")
+    public void iTwoValues() {
+        result = this.calculator.div(val1,val2);
+        System.out.println(result);
     }
 }
